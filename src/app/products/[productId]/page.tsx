@@ -1,6 +1,6 @@
-import ProductDetails from "@/app/components/ProductDetails";
+import ProductDetails from "../../../../components/ProductDetails";
 import axios from "axios";
-
+import Template from "./template";
 interface Product {
   id: number;
   title: string;
@@ -11,16 +11,16 @@ interface Product {
 }
 
 const ProductPage = async ({ params }: { params: { productId: string } }) => {
-  try {
-    const res = await axios.get<Product>(
-      `https://fakestoreapi.com/products/${params.productId}`
-    );
-    const product = res.data;
+  const res = await axios.get<Product>(
+    `https://fakestoreapi.com/products/${params.productId}`
+  );
+  const product = res.data;
 
-    return <ProductDetails product={product} />;
-  } catch (error) {
-    return <h1>Product not exists</h1>;
-  }
+  return (
+    <Template key={params.productId}>
+      <ProductDetails product={product} />
+    </Template>
+  );
 };
 
 export default ProductPage;

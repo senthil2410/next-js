@@ -25,7 +25,8 @@ const Home=async()=>
   )
   } 
   catch (error) {
-    <h1>Error while fetching  product data</h1>
+    console.error("Fetch error:", error);
+   return  <h1>Error while fetching  product data</h1>
   }
 
 }
