@@ -18,7 +18,7 @@ export const POST=async (request:Request)=>
     if (email === "senthil@gmail.com" && password === "senthil@123")
     {
 
-        const token = jwt.sign({ email },"secret", {expiresIn: "1d",})
+        const token = jwt.sign({ email },"Secret", {expiresIn: "1d",})
         
           const response=NextResponse.json({message:"Logged in Sucessful"});
           response.cookies.set("token", token, {
