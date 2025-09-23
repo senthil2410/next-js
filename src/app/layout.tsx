@@ -21,7 +21,8 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode,
+
 }>) {
   return (
 
@@ -33,7 +34,6 @@ export default function RootLayout({
           <Link href="/about">About</Link>
         </nav>
       </header>
-
         {children}
       </body>
     </html>

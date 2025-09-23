@@ -25,7 +25,7 @@ const handleSubmit = async (e: React.FormEvent) =>
         console.log("Login successful", data);
         router.push("/about");
     } 
-    catch (error: any) {
+    catch (error: unknown) {
         console.error("Login failed", error);
     }
 };

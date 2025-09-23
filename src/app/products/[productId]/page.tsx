@@ -1,4 +1,4 @@
-import ProductDetails from "../../../../components/ProductDetails";
+import ProductDetails from "../../../components/ProductDetails";
 import axios from "axios";
 import Template from "./template";
 interface Product {

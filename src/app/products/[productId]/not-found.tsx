@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { headers } from "next/headers";
-import getSiteData from "../../../../lib/site";
+import getSiteData from "../../../lib/site";
 
 const NotFound= async () => {
   const headerlist = await headers();
-  const domain =  headerlist.get("Host");;
+  const domain =  headerlist.get("Host");
+  if (!domain) {
+  throw new Error("Host header is missing");
+}
   const data = await getSiteData(domain);
 
   return (

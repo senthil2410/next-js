@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 
-const SECRET_KEY = process.env.SECRET_KEY  ;
 
 export const POST=async (request:Request)=>
 {  
