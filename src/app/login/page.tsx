@@ -1,12 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { ThemeContext } from "../authProvider";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const router = useRouter();
+
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -16,22 +19,27 @@ const Login = () => {
     }));
   };
 
-const handleSubmit = async (e: React.FormEvent) =>
- {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-        const { data } = await axios.post("/api/login", formData);
-        console.log("Login successful", data);
-        router.push("/about");
-    } 
-    catch (error: unknown) {
-        console.error("Login failed", error);
+      const { data } = await axios.post("/api/login", formData);
+      console.log("Login successful", data);
+      router.push("/about");
+    } catch (error: unknown) {
+      console.error("Login failed", error);
     }
-};
+  };
 
   return (
-    <div>
+    <div
+      style={{
+        background: theme === "dark" ? "black" : "white",
+         color: theme === "dark" ? "white" : "black", 
+      }}
+    >
+      <button onClick={toggleTheme}>Change theme</button>
+
       <form onSubmit={handleSubmit}>
         <input
           type="email"
