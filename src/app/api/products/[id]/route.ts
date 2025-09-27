@@ -2,6 +2,7 @@ import {
   handledeleteProductById,
   handleGetProductById,
 } from "@/controller/product.Controller";
+import {updateProductById } from "@/services/product.Service";
 import { NextResponse } from "next/server";
 
 export const GET = async (_req: Request,{ params }: { params: { id: string } }) =>
@@ -34,3 +35,22 @@ export const DELETE = async (_req: Request,{ params }: { params: { id: string } 
     return NextResponse.json({ error: message }, { status: 500 });
   }
 };
+
+export const PUT = async (req: Request,{ params }: { params: { id: string } }) =>
+ {
+  try {
+    const data = await req.json();
+    const updatedProduct = await updateProductById(params.id, data);
+    if (!updatedProduct) {
+      return NextResponse.json({ error: "Product not found" }, { status: 404 });
+    }
+    return NextResponse.json(updatedProduct, { status: 200 });
+  } 
+
+  catch (error) {
+    const message = error instanceof Error ? error.message : "Something went wrong";
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
+
+}
+

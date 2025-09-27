@@ -7,6 +7,22 @@ const bundleAnalyzer = withBundleAnalyzer({
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+   images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.vecteezy.com',
+        pathname: '/**',
+      },
+       {
+        protocol: 'https',
+        hostname: 'upload.wikimedia.org',
+        pathname: '/**',
+      },
+    ],
+    
+
+  },
   
 };
 
