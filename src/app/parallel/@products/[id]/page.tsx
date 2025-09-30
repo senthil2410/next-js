@@ -1,6 +1,6 @@
-import AddToCardButton from "@/components/page";
+import AddToCardButton from "@/components/AddtoCard";
 
-interface Product {
+export interface Product {
   id: number;
   title: string;
   description: string;
@@ -15,9 +15,8 @@ const ProductDetails = async ({ params }: { params: { id: string } }) => {
   const res = await fetch(`http://localhost:3000/api/products/${param.id}`,{cache:"no-cache"});
 
   if (!res.ok) {
-    return <div>Product not found.</div>;
+    throw new Error("Product not found");
   }
-
   const product: Product = await res.json();
 
   return (
